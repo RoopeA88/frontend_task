@@ -7,6 +7,11 @@ html, body, #root {
   flex-direction: column;
   
 }
+h2{
+  font-family: 'Arial', sans-serif;
+  font-size: 35px;
+  color: black;
+}
 body{
   background-color: rgb(24, 20, 20);
 }
@@ -26,6 +31,7 @@ body{
   align-items: flex-end;
   border-radius: 10px;
   border: 2px solid white;
+  flex-direction: column;
 
 }
 
@@ -51,7 +57,7 @@ body{
   font-size: 20px;
 }
 #CreateNoteDiv{
-  width: 200px;
+  width: 150px;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -63,16 +69,16 @@ body{
   flex-direction: row;
   height: 12.5vh;
   width: 50vw;
-  margin: 5px;
+  margin: 0;
   padding: 0;
   align-items: center;
-}
-.headerDiv2{
-  display: flex;
-  flex-direction: row;
-  height: 12.5vh;
+  justify-content: space-evenly;
 }
 
+.headerDiv1{
+  height: 12.5vh;
+  width: 50vw;
+}
 select{
   height: 27px;
   background-color: rgb(24, 20, 20);
@@ -90,4 +96,16 @@ label{
   margin-top: 10px;
   border-radius: 10px;
   border: 2px solid white;
+}
+textarea{
+  width: 90%;
+  height: 80%;
+  margin-top: 10px;
+  background-color: rgb(24, 20, 20);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  resize: none;
 }

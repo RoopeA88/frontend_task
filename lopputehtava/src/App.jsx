@@ -4,16 +4,24 @@ import './App.css'
 import MainBody from './MainBody.jsx'
 
 function App() {
-  const [selectedCourse, setSelectedCourse] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("0");
   const [showNoteInput, setShowNoteInput] = useState(false);
 
+  const handleCourseChange = (courseId) => {
+      
+      setSelectedCourse(courseId);
+      
+      
+      setShowNoteInput(false); 
+  };
   return (
     
       <div>
         <HeaderComponent
         selectedCourse={selectedCourse}
-        setSelectedCourse={setSelectedCourse}
-        setShowNoteInput={setShowNoteInput} />
+        
+        setShowNoteInput={setShowNoteInput}
+        setSelectedCourse={handleCourseChange} />
         <MainBody
         selectedCourse={selectedCourse}
         showNoteInput={showNoteInput}

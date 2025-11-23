@@ -4,7 +4,7 @@ function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput}){
 
     return(
         <div className="mainheader">
-        <div className="headerDiv1">
+        <div className="headerDiv1"> <h2>Muistio Supreme</h2>
         </div>
         <div className="headerDiv2">
             

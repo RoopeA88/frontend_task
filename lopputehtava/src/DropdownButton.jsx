@@ -7,10 +7,12 @@ function DropdownButton({selectedCourse, setSelectedCourse}) {
         const getCourses = async () => {
             const response = await fetch("https://luentomuistiinpano-api.netlify.app/.netlify/functions/courses");
             const data = await response.json();
+            console.log("moi")
             setCourses(data);
         };
 
         getCourses();
+        
     }, []);
     return(
         
