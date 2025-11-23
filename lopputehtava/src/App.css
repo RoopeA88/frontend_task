@@ -109,3 +109,12 @@ textarea{
   font-size: 16px;
   resize: none;
 }
+
+#courseDiv{
+  display: flex;
+  flex-direction: column;
+}
+form{
+  display: flex;
+  flex-direction: column;
+}

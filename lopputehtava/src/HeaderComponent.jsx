@@ -1,6 +1,7 @@
 import CreateNoteButton from "./CreateNoteButton"
 import DropdownButton from "./DropdownButton"
-function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput}){
+import AddCourseButton from "./AddCourseButton"
+function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput, courses, setCourses}){
 
     return(
         <div className="mainheader">
@@ -11,10 +12,15 @@ function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput}){
             <DropdownButton
             selectedCourse={selectedCourse}
             setSelectedCourse={setSelectedCourse}
+            
+            courses={courses}
             />
             <CreateNoteButton
             setShowNoteInput={setShowNoteInput}
             selectedCourse={selectedCourse}/>
+            <AddCourseButton
+            setCourses = {setCourses}
+            courses = {courses}/>
         </div>
         </div>
     )

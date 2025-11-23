@@ -1,19 +1,9 @@
 import {useState, useEffect} from "react";
-function DropdownButton({selectedCourse, setSelectedCourse}) {
+function DropdownButton({selectedCourse, setSelectedCourse,  courses}) {
     
-    const [courses, setCourses] = useState([]);
     
-    useEffect(() => {
-        const getCourses = async () => {
-            const response = await fetch("https://luentomuistiinpano-api.netlify.app/.netlify/functions/courses");
-            const data = await response.json();
-            console.log("moi")
-            setCourses(data);
-        };
-
-        getCourses();
-        
-    }, []);
+    
+    
     return(
         
             
