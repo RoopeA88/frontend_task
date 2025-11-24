@@ -5,10 +5,17 @@ function AddCourseButton({setCourses, courses}){
 
     const addCourse = () => {
 
+        if (courseName.trim() === "") {
+        
+        alert("Kurssin nimi ei voi olla tyhjä.");
+        return;
+    }
         const newCourse = {
             name: courseName.trim(),
             id:Date.now()
         }
+
+        
 
         setCourses([...courses, newCourse]);
 
@@ -17,8 +24,8 @@ function AddCourseButton({setCourses, courses}){
     return(
         <div id="courseDiv">
             <form>
-                <label>Kurssin nimi: </label>
-                <input type="text" value={courseName} onChange={(e) => setCourseName(e.target.value)}></input>
+                
+                <input type="text" placeholder="kurssin nimi"  value={courseName} onChange={(e) => setCourseName(e.target.value)}></input>
             </form>
             <button id="AddCourseButton" onClick={addCourse}>Lisää kurssi</button>
         </div>

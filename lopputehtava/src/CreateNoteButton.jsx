@@ -1,7 +1,7 @@
 function CreateNoteButton({setShowNoteInput, selectedCourse}){
 
     const handleClick = () => {
-        if(selectedCourse){
+        if(selectedCourse !== "-1"){
             setShowNoteInput(true);
         } else {
             alert("Jotain outoa tapahtui.");
