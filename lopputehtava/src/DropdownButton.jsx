@@ -1,8 +1,9 @@
 import {useState, useEffect} from "react";
-function DropdownButton({selectedCourse, setSelectedCourse,  courses}) {
+function DropdownButton() {
     
-    
-    
+    const selectedCourse = useAppStore(state => state.selectedCourse);
+    const setSelectedCourse = useAppStore(state => state.handleCourseChange);
+    const courses = useAppStore(state => state.courses)
     
     return(
         

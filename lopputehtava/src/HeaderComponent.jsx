@@ -2,7 +2,7 @@ import CreateNoteButton from "./CreateNoteButton"
 import DropdownButton from "./DropdownButton"
 import AddCourseButton from "./AddCourseButton"
 import RemoveCourse from "./RemoveCourse"
-function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput, courses, setCourses}){
+function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput, courses}){
 
     return(
         <div className="mainheader">
@@ -19,9 +19,7 @@ function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput, c
             <CreateNoteButton
             setShowNoteInput={setShowNoteInput}
             selectedCourse={selectedCourse}/>
-            <AddCourseButton
-            setCourses = {setCourses}
-            courses = {courses}/>
+            <AddCourseButton/>
             <RemoveCourse
             setCourses={setCourses}
             courses={courses}/>

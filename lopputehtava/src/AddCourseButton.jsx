@@ -1,8 +1,9 @@
 import { useState } from "react"
 
-function AddCourseButton({setCourses, courses}){
+function AddCourseButton(){
     const [courseName, setCourseName] = useState("")
-
+    
+    const addCourseAction = useAppStore(state => state.addCourse)
     const addCourse = () => {
 
         if (courseName.trim() === "") {
@@ -17,7 +18,7 @@ function AddCourseButton({setCourses, courses}){
 
         
 
-        setCourses([...courses, newCourse]);
+        addCourseAction(newCourse)
 
         setCourseName("");
     }
