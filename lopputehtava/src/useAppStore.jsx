@@ -9,21 +9,38 @@ export const useAppStore = create((set, get) => ({
     selectedCourse: "-1",
     showNoteInput: false,
 
+    isFetching: false,
+    test: true,
     fetchInitialData: async () => {
-        try {
-            const courseResponse = await fetch("https://luentomuistiinpano-api.netlify.app/.netlify/functions/courses")
-            const noteResponse = await fetch("https://luentomuistiinpano-api.netlify.app/.netlify/functions/notes")
-
-            const apiCourses = await courseResponse.json();
-            const apiNotes = await noteResponse.json();
-
-            set(state => ({
-                courses: [...state.courses, ...apiCourses],
-                notes: [...state.notes, apiNotes]
-            }));
-        } catch (error) {
-            console.error("Failed to fetch data:", error);
+        if (get().isFetching) {
+            return;
         }
+        if(get().courses.length > 1){
+            
+            return;
+        }
+
+        set({isFetching: true});
+        
+            try {
+                const courseResponse = await fetch("https://luentomuistiinpano-api.netlify.app/.netlify/functions/courses");
+                const noteResponse = await fetch("https://luentomuistiinpano-api.netlify.app/.netlify/functions/notes");
+
+                const apiCourses = await courseResponse.json();
+                const apiNotes = await noteResponse.json();
+                
+                const finalCourses = [{ id: "-1", name:"Valitse kurssi..."}, ...apiCourses];
+                set(state => ({
+                    courses: finalCourses,
+                    notes: [...state.notes, ...apiNotes],
+
+                    isFetching: false
+                }));
+            } catch (error) {
+                console.error("Failed to fetch data:", error);
+                set({ isFetching: false });
+            }
+        
     },
     addCourse: (newCourse) => set(state => ({
         courses: [...state.courses, newCourse]

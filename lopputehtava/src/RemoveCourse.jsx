@@ -1,4 +1,5 @@
-function RemoveCourse({setCourses, courses}){
+import { useAppStore } from "./useAppStore.jsx";
+function RemoveCourse(){
 
 
     return(

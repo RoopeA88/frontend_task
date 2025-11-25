@@ -1,4 +1,9 @@
-function CreateNoteButton({setShowNoteInput, selectedCourse}){
+
+import { useAppStore } from "./useAppStore.jsx";
+
+function CreateNoteButton(){
+    const setShowNoteInput = useAppStore(state => state.setShowNoteInput);
+    const selectedCourse = useAppStore(state => state.handleCourseChange);
 
     const handleClick = () => {
         if(selectedCourse !== "-1"){

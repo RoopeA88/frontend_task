@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { useAppStore } from "./useAppStore.jsx";
 function AddCourseButton(){
     const [courseName, setCourseName] = useState("")
     

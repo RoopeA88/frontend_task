@@ -2,7 +2,8 @@ import CreateNoteButton from "./CreateNoteButton"
 import DropdownButton from "./DropdownButton"
 import AddCourseButton from "./AddCourseButton"
 import RemoveCourse from "./RemoveCourse"
-function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput, courses}){
+import { useAppStore } from "./useAppStore.jsx";
+function HeaderComponent(){
 
     return(
         <div className="mainheader">
@@ -11,18 +12,11 @@ function HeaderComponent({selectedCourse, setSelectedCourse, setShowNoteInput, c
         <div className="headerDiv2">
             
             <DropdownButton
-            selectedCourse={selectedCourse}
-            setSelectedCourse={setSelectedCourse}
             
-            courses={courses}
             />
-            <CreateNoteButton
-            setShowNoteInput={setShowNoteInput}
-            selectedCourse={selectedCourse}/>
+            <CreateNoteButton/>
             <AddCourseButton/>
-            <RemoveCourse
-            setCourses={setCourses}
-            courses={courses}/>
+            <RemoveCourse/>
         </div>
         </div>
     )

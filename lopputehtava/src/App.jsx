@@ -11,13 +11,10 @@ function App() {
   
 
   
-  const notes = useAppStore(state => state.notes)
-  const selectedCourse = useAppStore(state => state.selectedCourse);
-  const showNoteInput = useAppStore(state => state.showNoteInput);
+  
 
   const fetchInitialData = useAppStore(state => state.fetchInitialData);
-  const handleCourseChange = useAppStore (state => state.handleCourseChange);
-  const setShowNoteInput = useAppStore(state => state.setShowNoteInput);
+  
   
   useEffect(() => {
     fetchInitialData();
@@ -31,19 +28,8 @@ function App() {
   return (
     
       <div>
-        <HeaderComponent
-        selectedCourse={selectedCourse}
-        
-        setShowNoteInput={setShowNoteInput}
-        
-        setSelectedCourse={handleCourseChange} />
-        <MainBody
-        selectedCourse={selectedCourse}
-        showNoteInput={showNoteInput}
-        notes={notes}
-        courses={courses}
-        addNote={addNote}
-        />
+        <HeaderComponent />
+        <MainBody/>
       </div>
   )
 }
