@@ -2,13 +2,14 @@ import {create} from "zustand";
 
 export const useAppStore = create((set, get) => ({
 
-    courses: [{ id: "-1", name:"Valitse kurssi..."}],
-
+    courses: [{ id: -1, name:"Valitse kurssi..."}],
+    
     notes: [],
-
-    selectedCourse: "-1",
+    addedNotes: [],
+    noteText: "",
+    selectedCourse: -1,
     showNoteInput: false,
-
+    noteGotSaved: false,
     isFetching: false,
     test: true,
     fetchInitialData: async () => {
@@ -29,7 +30,7 @@ export const useAppStore = create((set, get) => ({
                 const apiCourses = await courseResponse.json();
                 const apiNotes = await noteResponse.json();
                 
-                const finalCourses = [{ id: "-1", name:"Valitse kurssi..."}, ...apiCourses];
+                const finalCourses = [{ id: -1, name:"Valitse kurssi..."}, ...apiCourses];
                 set(state => ({
                     courses: finalCourses,
                     notes: [...state.notes, ...apiNotes],
@@ -43,12 +44,17 @@ export const useAppStore = create((set, get) => ({
         
     },
     addCourse: (newCourse) => set(state => ({
-        courses: [...state.courses, newCourse]
+        courses: [...state.courses, newCourse],
+        
     })),
     handleCourseChange: (courseId) => set ({
-        selectedCourse: courseId,
+        selectedCourse: Number(courseId),
         showNoteInput: false
     }),
+
+    
+        
+
 
     removeCourse: (idToDelete) => set(state => ({
         courses: state.courses.filter(course => course.id !== idToDelete),
@@ -57,7 +63,16 @@ export const useAppStore = create((set, get) => ({
 
     setShowNoteInput: (value) => set({ showNoteInput: value}),
 
-    addNote: (newNote) => set(state => ({
-        notes: [...state.notes, newNote]
+    setNoteGotSaved: (value) => set({ noteGotSaved: value}),
+
+    setNoteText: (text) => set({ noteText: text}),
+
+    addNote: () => set(state => ({
+        
+        
+            addedNotes: [...state.addedNotes, state.noteText],
+            noteGotSaved: true,
+        
+        
     })),
 }));

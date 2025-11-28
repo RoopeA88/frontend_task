@@ -3,7 +3,7 @@ import { useAppStore } from "./useAppStore.jsx";
 function DropdownButton() {
     
     const selectedCourse = useAppStore(state => state.selectedCourse);
-    const setSelectedCourse = useAppStore(state => state.handleCourseChange);
+    const handleCourseChange = useAppStore(state => state.handleCourseChange);
     const courses = useAppStore(state => state.courses)
     
     return(
@@ -17,7 +17,7 @@ function DropdownButton() {
                     id="kurssiDropdown"
                     value = {selectedCourse}
                     
-                    onChange={(e) => setSelectedCourse(e.target.value)}
+                    onChange={(e) => handleCourseChange(e.target.value)}
                     
                     
                 >

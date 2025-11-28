@@ -91,7 +91,7 @@ label{
 
 .mainbody{
   width: 50vw;
-  height: 60vh;
+  height: 30vh;
   background-color: gray;
   margin-top: 10px;
   border-radius: 10px;
@@ -117,4 +117,31 @@ textarea{
 form{
   display: flex;
   flex-direction: column;
+}
+
+
+#addNoteButton{
+  width: 150px;
+  height: 50px;
+  background-color: green;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+}
+#addNoteDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#showNoteDiv{
+  margin-top: 10px;
+  width: 50vw;
+  height: auto;
+  background-color: gray;
+  border-radius: 10px;
+  border: 2px solid white;
+  padding: 10px;
+  text-align: left;
+  height: 25vh;
 }

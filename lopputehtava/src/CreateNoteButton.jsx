@@ -3,13 +3,14 @@ import { useAppStore } from "./useAppStore.jsx";
 
 function CreateNoteButton(){
     const setShowNoteInput = useAppStore(state => state.setShowNoteInput);
-    const selectedCourse = useAppStore(state => state.handleCourseChange);
-
+    const selectedCourse = useAppStore(state => state.selectedCourse);
+    const setNoteGotSaved = useAppStore (state => state.setNoteGotSaved);
     const handleClick = () => {
-        if(selectedCourse !== "-1"){
+        if(selectedCourse !== -1){
             setShowNoteInput(true);
+            setNoteGotSaved(false);
         } else {
-            alert("Jotain outoa tapahtui.");
+            alert("Valitse ensin kurssi... hölömö");
         }
         
     };

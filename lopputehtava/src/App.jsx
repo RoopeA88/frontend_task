@@ -3,6 +3,7 @@ import HeaderComponent from './HeaderComponent.jsx'
 import './App.css'
 import MainBody from './MainBody.jsx'
 import { useAppStore } from './useAppStore.jsx'
+import ShowNote from './ShowNote.jsx'
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
       <div>
         <HeaderComponent />
         <MainBody/>
+        <ShowNote/>
       </div>
   )
 }
