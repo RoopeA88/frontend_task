@@ -12,6 +12,7 @@ export const useAppStore = create((set, get) => ({
     noteGotSaved: false,
     isFetching: false,
     test: true,
+    
     fetchInitialData: async () => {
         if (get().isFetching) {
             return;
@@ -49,7 +50,8 @@ export const useAppStore = create((set, get) => ({
     })),
     handleCourseChange: (courseId) => set ({
         selectedCourse: Number(courseId),
-        showNoteInput: false
+        showNoteInput: false,
+        
     }),
 
     
@@ -67,12 +69,20 @@ export const useAppStore = create((set, get) => ({
 
     setNoteText: (text) => set({ noteText: text}),
 
-    addNote: () => set(state => ({
-        
-        
-            addedNotes: [...state.addedNotes, state.noteText],
+    addNote: () => set(state => {
+        const selectedCourseObj = state.courses.find(course => course.id === state.selectedCourse);
+
+            const noteObject = {
+                noteId: state.notes.length + 1,
+                text: state.noteText,
+                course: {id: state.selectedCourse, name: selectedCourseObj?.name || "Unknown Course"},
+                timestamp: new Date().toISOString(),
+            };
+
+            return {
+            addedNotes: [...state.addedNotes, noteObject],
             noteGotSaved: true,
+            };
         
-        
-    })),
+    }),
 }));

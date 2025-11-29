@@ -137,11 +137,17 @@ form{
 #showNoteDiv{
   margin-top: 10px;
   width: 50vw;
-  height: auto;
+  
   background-color: gray;
   border-radius: 10px;
   border: 2px solid white;
   padding: 10px;
   text-align: left;
-  height: 25vh;
+  height: 36vh;
+  overflow-y: auto;
+}
+
+#noteDivActual{
+  border: 2px solid black;
+  padding-left: 10px;
 }
