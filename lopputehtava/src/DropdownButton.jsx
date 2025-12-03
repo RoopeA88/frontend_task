@@ -4,8 +4,11 @@ function DropdownButton() {
     
     const selectedCourse = useAppStore(state => state.selectedCourse);
     const handleCourseChange = useAppStore(state => state.handleCourseChange);
-    const courses = useAppStore(state => state.courses)
-    
+    const courses = useAppStore(state => state.courses);
+    const disableCreateNoteButton = useAppStore(state => state.disableCreateNoteButton);
+    if (disableCreateNoteButton) {
+        return null;
+    }
     return(
         
             

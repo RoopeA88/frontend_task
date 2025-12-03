@@ -5,12 +5,16 @@ function CreateNoteButton(){
     const setShowNoteInput = useAppStore(state => state.setShowNoteInput);
     const selectedCourse = useAppStore(state => state.selectedCourse);
     const setNoteGotSaved = useAppStore (state => state.setNoteGotSaved);
+    const sessionActive = useAppStore(state => state.sessionActive);
+    const disableCreateNoteButton = useAppStore(state => state.disableCreateNoteButton);
+    const setDisableCreateNoteButton = useAppStore(state => state.setDisableCreateNoteButton);
     const handleClick = () => {
-        if(selectedCourse !== -1){
+        if(selectedCourse !== -1 && sessionActive && disableCreateNoteButton === false){
             setShowNoteInput(true);
             setNoteGotSaved(false);
+            setDisableCreateNoteButton(true);
         } else {
-            alert("Valitse ensin kurssi... hölömö");
+            alert("Valitse ensin kurssi ja aloita istunto ennen muistiinpanon luomista.");
         }
         
     };

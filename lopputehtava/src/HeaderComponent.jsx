@@ -3,6 +3,7 @@ import DropdownButton from "./DropdownButton"
 import AddCourseButton from "./AddCourseButton"
 import RemoveCourse from "./RemoveCourse"
 import { useAppStore } from "./useAppStore.jsx";
+import StartSessionButton from "./StartSessionButton";
 function HeaderComponent(){
 
     return(
@@ -17,6 +18,7 @@ function HeaderComponent(){
             <CreateNoteButton/>
             <AddCourseButton/>
             <RemoveCourse/>
+            <StartSessionButton/>
         </div>
         </div>
     )
