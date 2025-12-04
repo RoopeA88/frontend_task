@@ -3,15 +3,19 @@ import {create} from "zustand";
 export const useAppStore = create((set, get) => ({
 
     courses: [{ id: -1, name:"Valitse kurssi..."}],
-    
+    coursesForList: [{ id: -1, name:"Kaikki kurssit"}],
     notes: [],
     addedNotes: [],
     noteText: "",
     selectedCourse: -1,
+    selectedCourseForList: -1,
+    setSelectedCourseForList: (courseId) => set({selectedCourseForList: courseId}),
     setSelectedCourse: (courseId) => set({selectedCourse: courseId}),
     showNoteInput: false,
     noteGotSaved: false,
     isFetching: false,
+    listNotesBoolean: true,
+    setListNotesBoolean: (value) => set({listNotesBoolean: value}),
     test: true,
     sessionId: null,
     disableCreateNoteButton: false,
@@ -20,6 +24,8 @@ export const useAppStore = create((set, get) => ({
     setSessionActive: (value) => set({sessionActive: value}),
     setSessionId: (id) => set({ sessionId: id }),
     sessionIdList: [],
+    listNotesDropdownBoolean: false,
+    setListNotesDropdownBoolean: (value) => set({listNotesDropdownBoolean: value}),
     fetchInitialData: async () => {
         if (get().isFetching) {
             return;
@@ -39,9 +45,11 @@ export const useAppStore = create((set, get) => ({
                 const apiNotes = await noteResponse.json();
                 
                 const finalCourses = [{ id: -1, name:"Valitse kurssi..."}, ...apiCourses];
+                const finalCoursesForList = [{ id: -1, name:"Kaikki kurssit"}, ...apiCourses];
                 set(state => ({
                     courses: finalCourses,
                     notes: [...state.notes, ...apiNotes],
+                    coursesForList: finalCoursesForList,
 
                     isFetching: false
                 }));
@@ -53,12 +61,16 @@ export const useAppStore = create((set, get) => ({
     },
     addCourse: (newCourse) => set(state => ({
         courses: [...state.courses, newCourse],
+        coursesForList: [...state.coursesForList, newCourse],
         
     })),
     handleCourseChange: (courseId) => set ({
         selectedCourse: Number(courseId),
         showNoteInput: false,
         
+    }),
+    handleCourseChangeForList: (courseId) => set ({
+        selectedCourseForList: Number(courseId),
     }),
 
     startSessionFunction: () => {
@@ -67,12 +79,16 @@ export const useAppStore = create((set, get) => ({
         get().setSessionId(Date.now())
         console.log("Session started with ID:", get().sessionId);
         get().setSessionActive(true);
+        get().setListNotesBoolean(true);
+        get().setNoteText("");
+        get().setListNotesDropdownBoolean(false);
         
     }
     ,
     endSessionFunction: () => {
         console.log("Session ended with ID:", get().sessionId);
         get().setSessionActive(false);
+        get().setListNotesBoolean(false);
         
     },
     
@@ -91,6 +107,10 @@ export const useAppStore = create((set, get) => ({
     setNoteText: (text) => set({ noteText: text}),
 
     addNote: () => set(state => {
+        if(state.noteText.trim() === ""){
+            alert("Muistiinpano ei voi olla tyhjä.");
+            return {};
+        }
         const selectedCourseObj = state.courses.find(course => course.id === state.selectedCourse);
         
             const noteObject = {
@@ -102,9 +122,15 @@ export const useAppStore = create((set, get) => ({
             };
 
             return {
+            
             addedNotes: [...state.addedNotes, noteObject],
             noteGotSaved: true,
+            
             };
         
     }),
+    setListNotesFunction: () => {
+        get().setListNotesDropdownBoolean(true)
+    },
+    
 }));

@@ -6,6 +6,7 @@ function StartSessionButton() {
     return (
         <div id="startSessionDiv">
             <button id="startSessionButton" onClick={startSessionFunction}>Start Session</button>
+            
         </div>
     )
 }

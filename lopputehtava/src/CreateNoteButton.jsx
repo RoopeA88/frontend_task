@@ -8,11 +8,13 @@ function CreateNoteButton(){
     const sessionActive = useAppStore(state => state.sessionActive);
     const disableCreateNoteButton = useAppStore(state => state.disableCreateNoteButton);
     const setDisableCreateNoteButton = useAppStore(state => state.setDisableCreateNoteButton);
+    const setListNotesDropdownBoolean = useAppStore(state => state.setListNotesDropdownBoolean);
     const handleClick = () => {
         if(selectedCourse !== -1 && sessionActive && disableCreateNoteButton === false){
             setShowNoteInput(true);
             setNoteGotSaved(false);
             setDisableCreateNoteButton(true);
+            setListNotesDropdownBoolean(false);
         } else {
             alert("Valitse ensin kurssi ja aloita istunto ennen muistiinpanon luomista.");
         }

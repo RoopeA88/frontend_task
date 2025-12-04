@@ -72,7 +72,7 @@ body{
   margin: 0;
   padding: 0;
   align-items: center;
-  justify-content: space-evenly;
+  gap: 10px;
 }
 
 .headerDiv1{
@@ -113,12 +113,42 @@ textarea{
 #courseDiv{
   display: flex;
   flex-direction: column;
+  width: 150px;
+  height: 100px;
+  
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 10px;
 }
-form{
-  display: flex;
-  flex-direction: column;
+input{
+  width: 150px;
+  height: 47.5px;
+  background-color: rgb(24, 20, 20);
+  color: white;
+  
+  
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
 }
 
+#AddCourseButton{
+  width: 150px;
+  height: 47.5px;
+  background-color: blue;
+  border-radius: 10px;
+  color: white;
+  padding: 0;
+  margin: 0;
+  
+  
+}
+form{
+  width: 150px;
+}
 
 #addNoteButton{
   width: 150px;
@@ -138,10 +168,11 @@ form{
   margin-top: 10px;
   width: 50vw;
   
+  
   background-color: gray;
   border-radius: 10px;
   border: 2px solid white;
-  padding: 10px;
+  
   text-align: left;
   height: 36vh;
   overflow-y: auto;
@@ -157,4 +188,64 @@ form{
   align-items: center;
   gap: 20px;
   margin-top: 10px;
+}
+
+#noteDivListSession{
+  border: 2px solid black;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  background-color: aliceblue;
+  color: black;
+}
+
+#startSessionDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 12.5vh;
+}
+
+#listNotesDiv{
+  background-color: blue;
+  width: 150px;
+  height: 100px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  border-radius: 10px;
+  font-size: 20px;
+}
+#noteDivCanDelete{
+  border: 2px solid black;
+  padding-left: 10px;
+  background-color: lightgray;
+  margin-bottom: 5px;
+  width: 70%;
+}
+
+#noteDivMother{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  gap: 20px;
+}
+
+#deleteButton{
+  width: 45px;
+  height: 45px;
+  background-color: red;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 22px;
 }
