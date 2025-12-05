@@ -13,7 +13,7 @@ function CreateNoteButton(){
         if(selectedCourse !== -1 && sessionActive && disableCreateNoteButton === false){
             setShowNoteInput(true);
             setNoteGotSaved(false);
-            setDisableCreateNoteButton(true);
+            
             setListNotesDropdownBoolean(false);
         } else {
             alert("Valitse ensin kurssi ja aloita istunto ennen muistiinpanon luomista.");

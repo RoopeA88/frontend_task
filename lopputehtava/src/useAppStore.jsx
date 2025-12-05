@@ -25,6 +25,7 @@ export const useAppStore = create((set, get) => ({
     setSessionId: (id) => set({ sessionId: id }),
     sessionIdList: [],
     listNotesDropdownBoolean: false,
+    fixBugBoolean: false,
     setListNotesDropdownBoolean: (value) => set({listNotesDropdownBoolean: value}),
     fetchInitialData: async () => {
         if (get().isFetching) {
@@ -70,7 +71,12 @@ export const useAppStore = create((set, get) => ({
         
     }),
     handleCourseChangeForList: (courseId) => set ({
+        fixBugBoolean:true,
+        listNotesDropdownBoolean:false,
         selectedCourseForList: Number(courseId),
+        
+        
+        
     }),
 
     startSessionFunction: () => {
@@ -108,13 +114,14 @@ export const useAppStore = create((set, get) => ({
 
     addNote: () => set(state => {
         if(state.noteText.trim() === ""){
+            
             alert("Muistiinpano ei voi olla tyhjä.");
             return {};
         }
         const selectedCourseObj = state.courses.find(course => course.id === state.selectedCourse);
         
             const noteObject = {
-                noteId: state.notes.length + 1,
+                noteId: state.addedNotes.length + 1,
                 text: state.noteText,
                 course: {id: state.selectedCourse, name: selectedCourseObj?.name || "Unknown Course"},
                 timestamp: new Date().toISOString(),
@@ -122,7 +129,7 @@ export const useAppStore = create((set, get) => ({
             };
 
             return {
-            
+            disableCreateNoteButton:true,
             addedNotes: [...state.addedNotes, noteObject],
             noteGotSaved: true,
             
@@ -132,5 +139,23 @@ export const useAppStore = create((set, get) => ({
     setListNotesFunction: () => {
         get().setListNotesDropdownBoolean(true)
     },
+    setListNotesFunctionFalse: () => {
+        get().setListNotesDropdownBoolean(false)
+    },
+
+    deleteNoteFunction: (noteIdToDelete) => set(state => ({
+        notes: state.addedNotes.filter(note => note.noteId !== noteIdToDelete),
+        
+    })),
+
+    deleteHardcodedNoteFunction: (noteIdToDelete) => set(state => ({
+        notes: state.notes.filter(note => note.id !== noteIdToDelete),
+    
+    })),
+
+    deleteAddedNoteFunction: (noteIdToDelete) => set(state => ({
+        addedNotes: state.addedNotes.filter(note => note.noteId !== noteIdToDelete),
+    })),
+        
     
 }));

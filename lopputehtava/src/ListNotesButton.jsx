@@ -17,7 +17,7 @@ function ListNotesButton() {
                 </option>
             ))}
         </select>
-        <button onClick={setListNotesFunction}>List notes</button>
+        <button onClick={setListNotesFunction} id="listNotesButton">List notes</button>
         </div>
     )
 }

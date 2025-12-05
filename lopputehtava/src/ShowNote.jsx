@@ -14,42 +14,84 @@ function ShowNote() {
     const notes = useAppStore(state => state.notes);
     const selectedCourseForList = useAppStore(state => state.selectedCourseForList);
     const listNotesDropdownBoolean = useAppStore(state => state.listNotesDropdownBoolean);
+    const filteredNotesForList = notes.filter(note => note.course.id === selectedCourseForList);
+    const filteredNotesForListAdded = addedNotes.filter(note => note.course.id === selectedCourseForList);
+    const deleteNoteFunction = useAppStore(state => state.deleteNoteFunction);
+    const deleteAddedNoteFunction = useAppStore(state => state.deleteAddedNoteFunction);
+    const deleteHardcodedNoteFunction = useAppStore(state => state.deleteHardcodedNoteFunction);
+    const fixBugBoolean = useAppStore(state => state.fixBugBoolean);
     if(listNotesDropdownBoolean){
         if(selectedCourseForList === -1){
             return (
-                <div id="showNoteDiv">
+                <div className="showNoteDiv">
                     {notes.map((note, index) =>(
-                        <div id="noteDivMother">
-                            <button id="deleteButton">X</button>
-                            <div key={note.noteId} id="noteDivCanDelete">
+                        <div className="noteDivMother" >
+                            <button className="deleteButton" onClick={() => deleteHardcodedNoteFunction(note.id)}>X</button>
+                            <div  className="noteDivCanDelete" key={note.id}>
                                 <h3>Muistiinpano kurssile ID: {note.course.id} | {note.timestamp} | {note.course.name}</h3>
                                 <p>{note.text}</p>
                             </div>
                         </div>  
                     ))}
-                </div>
-            )
-        }
-        return (
-            <div id="showNoteDiv">
 
-            </div>
-        )
+
+                    {addedNotes.map((note, index) =>(
+                        <div className="noteDivMother" >
+                            <button className="deleteButton" onClick={() => deleteAddedNoteFunction(note.noteId)}>X</button>
+                            <div  className="noteDivCanDelete" key={note.id}>
+                                <h3>Muistiinpano kurssile ID: {note.course.id} | {note.timestamp} | {note.course.name}</h3>
+                                <p>{note.text}</p>
+                            </div>
+                        </div>  
+                    ))}
+
+                </div>
+            ) 
+
+            } else{
+                return (
+                    <div className="showNoteDiv">
+                        {filteredNotesForList.map((note, index) =>(
+                            <div className="noteDivMother" >
+                                <button className="deleteButton" onClick={() => deleteNoteFunction(note.noteId)}>X</button>
+                                <div  className="noteDivCanDelete" key={note.id}>
+                                    <h3>Muistiinpano kurssile ID: {note.course.id} | {note.timestamp} | {note.course.name}</h3>
+                                    <p>{note.text}</p>
+                                </div>
+                            </div>  
+                        ))}
+
+                        {filteredNotesForListAdded.map((note, index) =>(
+                            <div className="noteDivMother" >
+                                <button className="deleteButton" onClick={() => deleteAddedNoteFunction(note.noteId)}>X</button>
+                                <div  className="noteDivCanDelete" key={note.id}>
+                                    <h3>Muistiinpano kurssile ID: {note.course.id} | {note.timestamp} | {note.course.name}  </h3>
+                                    <p>{note.text}</p>
+                                </div>
+                            </div>  
+                        ))}
+                    </div>
+                )
+        }   
+
     }
 
+
+    
+
     return (
-        <div id="showNoteDiv">
+        <div className="showNoteDiv">
             {noteGotSaved && sessionActive && listNotesBoolean && listNotesDropdownBoolean == false  && filteredNotes.map((note, index) =>(
                 
-                <div key={note.noteId} id="noteDivActual">
+                <div key={note.id} id="noteDivActual">
                     <h3>Muistiinpano kurssile ID: {selectedCourse} | {note.timestamp} | {note.course.name}</h3>
                     <p>{note.text}</p>
 
                 </div>  
             ))}
-            {listNotesBoolean === false && filteredNotes.map ((note, index) =>(
+            {listNotesBoolean === false && fixBugBoolean === false && filteredNotes.map ((note, index) =>(
                 
-                <div key={note.noteId} id="noteDivListSession">
+                <div key={note.id} id="noteDivListSession">
                     
                     <p>{note.text}</p>
                 
