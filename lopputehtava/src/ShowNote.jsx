@@ -20,7 +20,15 @@ function ShowNote() {
     const deleteAddedNoteFunction = useAppStore(state => state.deleteAddedNoteFunction);
     const deleteHardcodedNoteFunction = useAppStore(state => state.deleteHardcodedNoteFunction);
     const fixBugBoolean = useAppStore(state => state.fixBugBoolean);
+    const areNotesEmpty = useAppStore(state => state.areNotesEmpty);
     if(listNotesDropdownBoolean){
+        if(areNotesEmpty){
+            return (
+                <div className="showNoteDiv">
+                    <h3>Ei muistiinpanoja!</h3>
+                </div>
+            )
+        }
         if(selectedCourseForList === -1){
             return (
                 <div className="showNoteDiv">

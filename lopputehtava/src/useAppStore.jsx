@@ -26,6 +26,8 @@ export const useAppStore = create((set, get) => ({
     sessionIdList: [],
     listNotesDropdownBoolean: false,
     fixBugBoolean: false,
+    areNotesEmpty: false,
+    setAreNotesEmpty: (value) => set({areNotesEmpty: value}),
     setListNotesDropdownBoolean: (value) => set({listNotesDropdownBoolean: value}),
     fetchInitialData: async () => {
         if (get().isFetching) {
@@ -95,6 +97,7 @@ export const useAppStore = create((set, get) => ({
         console.log("Session ended with ID:", get().sessionId);
         get().setSessionActive(false);
         get().setListNotesBoolean(false);
+        get().fixBugBoolean = false;
         
     },
     
@@ -129,6 +132,7 @@ export const useAppStore = create((set, get) => ({
             };
 
             return {
+            noteText: "",
             disableCreateNoteButton:true,
             addedNotes: [...state.addedNotes, noteObject],
             noteGotSaved: true,
@@ -136,11 +140,16 @@ export const useAppStore = create((set, get) => ({
             };
         
     }),
-    setListNotesFunction: () => {
-        get().setListNotesDropdownBoolean(true)
-    },
+    setListNotesFunction: () => set((state) => {
+        const isEmpty = state.addedNotes.length === 0 && state.notes.length === 0;
+    
+        return {
+            areNotesEmpty: isEmpty,
+            listNotesDropdownBoolean: true,
+        };
+    }),
     setListNotesFunctionFalse: () => {
-        get().setListNotesDropdownBoolean(false)
+        get().setListNotesDropdownBoolean(false);
     },
 
     deleteNoteFunction: (noteIdToDelete) => set(state => ({

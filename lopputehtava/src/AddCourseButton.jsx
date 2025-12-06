@@ -21,6 +21,7 @@ function AddCourseButton(){
         addCourseAction(newCourse)
 
         setCourseName("");
+        alert(`Kurssi ${newCourse.name} lisätty ID:llä ${newCourse.id}`)
     }
     return(
         <div id="courseDiv">
